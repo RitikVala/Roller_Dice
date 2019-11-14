@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -65,25 +66,32 @@ public class MainActivity extends AppCompatActivity {
         EditText Num1 = (EditText) this.findViewById(R.id.userInput);
         String text_check = Num1.getText().toString().trim();
 
-        if (text_check.isEmpty() || text_check == null) {
-            results1.setText("Please Enter A Value");
-        } else {
-            guessCount++;
-            TextView guess = (TextView) this.findViewById(R.id.numguess);
-            Random r = new Random();
-            int randNum = r.nextInt(7 - 1) + 1;
-            int Num2 = Integer.parseInt(Num1.getText().toString());
+        //Use try and Catch
+        try {
 
-            if (Num2 == randNum) {
-                scoreBoard(view);
+            if (text_check.isEmpty() || text_check == null) {
+                results1.setText("Please Enter A Value");
+            } else {
+                guessCount++;
+                TextView guess = (TextView) this.findViewById(R.id.numguess);
+                Random r = new Random();
+                int randNum = r.nextInt(7 - 1) + 1;
+                int Num2 = Integer.parseInt(Num1.getText().toString());
+
+                if (Num2 == randNum) {
+                    scoreBoard(view);
+                }
+
+
+                String CompGen = String.valueOf(randNum);
+                results.setText("Computer's Number: \r" + CompGen);
+                results1.setText("Your Number: \r" + Num2);
+                guess.setText("Guess Counter: \n" + guessCount);
+
             }
-
-
-            String CompGen = String.valueOf(randNum);
-            results.setText("Computer's Number: \r" + CompGen);
-            results1.setText("Your Number: \r" + Num2);
-            guess.setText("Guess Counter: \n" + guessCount);
-
+        }
+        catch(Expectation ex){
+            Log.e("Errro" , "Error");
         }
 
     }
