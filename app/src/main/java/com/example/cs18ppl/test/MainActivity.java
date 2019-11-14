@@ -90,8 +90,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
-        catch(Expectation ex){
-            Log.e("Errro" , "Error");
+        catch(Exception ex){
+            Log.e("Error" , "Error");
         }
 
     }
